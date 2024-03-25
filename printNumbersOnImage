@@ -1,0 +1,26 @@
+#listOfNumbers = [1, 4, 6, "90", 123, 237, "15", "030", 45, 200] 
+#Create a white background image and print the 'listOfNumbers' values on to the image. 
+import cv2
+import numpy as np
+
+listOfNumbers = [1, 4, 6, "90", 123, 237, "15", "030", 45, 200]
+
+image_height = 400
+image_width = 400
+background_color = (255, 255, 255)
+image = np.ones((image_height, image_width, 3), dtype=np.uint8) * background_color
+
+font = cv2.FONT_HERSHEY_SIMPLEX
+font_scale = 0.9
+font_thickness = 2
+font_color = (0, 0, 0)
+
+x_position = 100
+y_position = 100
+y_spacing = 25
+
+for number in listOfNumbers:
+    cv2.putText(image, str(number), (x_position, y_position), font, font_scale, font_color, font_thickness)
+    y_position += y_spacing
+
+cv2.imwrite("outputImg.png", image)
